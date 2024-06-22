@@ -1,0 +1,29 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1719068290
+default_bus_layout.tres::AudioBusLayout::-1::1717782275::0::1::::<><>::
+default_env.tres::Environment::-1::1717782275::0::1::::<><>::
+fps_label.gd::GDScript::-1::1718551664::0::1::::<>ColorRect<>::
+fps_label.tscn::PackedScene::6267357961043540587::1718565150::0::1::::<><>::res://fps_label.gd
+GameTheme.tres::Theme::6531292837942333117::1718836355::0::1::::<><>::uid://bdos1y5elawny::::res://fonts/Montserrat-Medium.ttf
+icon.png::CompressedTexture2D::8079234926687175885::1717782190::1717782295::1::::<><>::
+Main.gd::GDScript::-1::1718837208::0::1::::<>Node3D<>::
+Main.tscn::PackedScene::1876399574741027737::1719068195::0::1::::<><>::res://Main.gd<>uid://8sxxrq8rrn0n::::res://Player.tscn<>res://Mob.gd<>uid://hp26ofjpvd36::::res://art/mob.glb<>uid://cnfudovlf88xq::::res://music_player.tscn<>uid://c0b2o6i4x6xvp::::res://GameTheme.tres<>res://ScoreLabel.gd
+Mob.gd::GDScript::-1::1718575370::0::1::::<>CharacterBody3D<>::
+music_player.tscn::PackedScene::5696838688963568026::1719068229::0::1::::<><>::uid://dmu8jgk40qv5i::::res://art/House In a Forest Loop.ogg
+Player.gd::GDScript::-1::1718664262::0::1::::<>CharacterBody3D<>::
+Player.tscn::PackedScene::2354829122858179787::1719068194::0::1::::<><>::res://Player.gd<>uid://cgbp853o723ac::::res://art/player.glb
+Player_clean.gd::GDScript::-1::1717871466::0::1::::<>CharacterBody3D<>::
+ScoreLabel.gd::GDScript::-1::1719068014::0::1::::<>Label<>::
+::res://art/::1718837423
+body.material::StandardMaterial3D::-1::1717782190::0::1::::<><>::
+eye.material::StandardMaterial3D::-1::1717782190::0::1::::<><>::
+House In a Forest Loop.ogg::AudioStreamOggVorbis::8044835794663159560::1717782190::1718837423::1::::<><>::
+mob.glb::PackedScene::523983033673587419::1717782190::1717782296::1::::<><>::
+mob_body.material::StandardMaterial3D::-1::1717782190::0::1::::<><>::
+mob_eye.material::StandardMaterial3D::-1::1717782190::0::1::::<><>::
+player.glb::PackedScene::5197010112693794954::1717782190::1717782296::1::::<><>::
+pupil.material::StandardMaterial3D::-1::1717782190::0::1::::<><>::
+::res://art/glTF_Assets/::1717782506
+::res://fonts/::1717782295
+LICENSE.txt::TextFile::-1::1717782190::0::1::::<><>::
+Montserrat-Medium.ttf::FontFile::2627029146776361946::1717782190::1717782295::1::::<><>::

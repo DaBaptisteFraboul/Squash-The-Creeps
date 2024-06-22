@@ -1,0 +1,130 @@
+[gd_scene load_steps=13 format=3 uid="uid://1y7a6blnki62"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_6rslo"]
+[ext_resource type="PackedScene" uid="uid://8sxxrq8rrn0n" path="res://Player.tscn" id="2_diev3"]
+[ext_resource type="PackedScene" uid="uid://cijdqvi8of2t" path="res://mob.tscn" id="2_qu7as"]
+[ext_resource type="Theme" uid="uid://c0b2o6i4x6xvp" path="res://GameTheme.tres" id="4_knb3n"]
+[ext_resource type="Script" path="res://ScoreLabel.gd" id="5_2fdn0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t3j0w"]
+size = Vector3(60, 2, 60)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dmfr4"]
+lightmap_size_hint = Vector2i(14, 21)
+size = Vector3(60, 2, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pec4"]
+albedo_color = Color(0.81, 0.5643, 0.243, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gbpi8"]
+material = SubResource("StandardMaterial3D_2pec4")
+
+[sub_resource type="Curve3D" id="Curve3D_i8v5w"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 15.9719, -0.0362511, -13.9124, 0, 0, 0, 0, 0, 0, 15.7907, 0, 19.2337, 0, 0, 0, 0, 0, 0, -16.5822, 0, 19.5503, 0, 0, 0, 0, 0, 0, -16.5, 0, -13.6, 0, 0, 0, 0, 0, 0, 15.9719, -0.0362511, -13.9124),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_1opo6"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_o3cmc"]
+script/source = "extends Label
+
+func _process(_delta):
+	var fps = Engine.get_frames_per_second()
+	text = \"Fps : \"+str(fps)
+"
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_6rslo")
+mob_scene = ExtResource("2_qu7as")
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_t3j0w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.66016)
+mesh = SubResource("BoxMesh_dmfr4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 9.5, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_diev3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.86562, 0)
+
+[node name="Cylinders" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5296, 0, -13.5553)
+mesh = SubResource("CylinderMesh_gbpi8")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5296, 0, 19.3345)
+mesh = SubResource("CylinderMesh_gbpi8")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7833, 0, -13.5553)
+mesh = SubResource("CylinderMesh_gbpi8")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cylinders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7833, 0, 19.3345)
+mesh = SubResource("CylinderMesh_gbpi8")
+
+[node name="SpawnPath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_i8v5w")
+
+[node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath"]
+transform = Transform3D(-0.999963, 5.97858e-06, 0.00546649, 0, 0.999999, -0.00109364, -0.00546646, -0.00109364, -0.999967, 15.9719, -0.0362511, -13.9124)
+
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FPS_counter" type="Label" parent="UserInterface"]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 26.0
+offset_bottom = 55.0
+theme = ExtResource("4_knb3n")
+theme_override_font_sizes/font_size = 22
+text = "fgn"
+label_settings = SubResource("LabelSettings_1opo6")
+script = SubResource("GDScript_o3cmc")
+
+[node name="ScoreLabel" type="Label" parent="UserInterface"]
+layout_mode = 1
+offset_right = 68.0
+offset_bottom = 26.0
+theme = ExtResource("4_knb3n")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Score : 0"
+script = ExtResource("5_2fdn0")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(-1, -6.61976e-08, 5.71019e-08, 1.77636e-15, 0.65317, 0.757212, -8.74228e-08, 0.757212, -0.65317, 0, 12.641, -15.2549)
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D"]
+transform = Transform3D(1, -7.10543e-15, -5.32907e-14, 0, 1, 2.98023e-08, 7.10543e-15, -2.98023e-08, 1, -1.13687e-13, 5.63804, -4.86337)
+projection = 1
+size = 19.0
+near = 0.001
+far = 100.0
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]

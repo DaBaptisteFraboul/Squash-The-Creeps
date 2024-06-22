@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c0b2o6i4x6xvp"]
+
+[ext_resource type="FontFile" uid="uid://bdos1y5elawny" path="res://fonts/Montserrat-Medium.ttf" id="1_oxfcn"]
+
+[resource]
+default_font = ExtResource("1_oxfcn")

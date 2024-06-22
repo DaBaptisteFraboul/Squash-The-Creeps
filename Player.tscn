@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://8sxxrq8rrn0n"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_eywls"]
+[ext_resource type="PackedScene" uid="uid://cgbp853o723ac" path="res://art/player.glb" id="2_gmbv1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p4sg5"]
+radius = 0.775
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_d4lli"]
+height = 0.473468
+radius = 1.4
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_stukv"]
+radius = 0.209304
+height = 1.19827
+
+[node name="Player" type="CharacterBody3D"]
+collision_mask = 6
+script = ExtResource("1_eywls")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="player_model" parent="Pivot" instance=ExtResource("2_gmbv1")]
+transform = Transform3D(1, -2.98023e-08, 2.98023e-08, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_p4sg5")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="bodyCollider" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.740789, 0)
+shape = SubResource("CylinderShape3D_d4lli")
+
+[node name="L_tentacle_collider" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.906308, 0.422618, 1.84732e-08, 0, -4.37114e-08, 1, 0.422618, -0.906308, -3.9616e-08, -0.552856, 0.732152, 1.35818)
+shape = SubResource("CapsuleShape3D_stukv")
+
+[node name="R_tentacle_collider" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.906308, -0.422618, -1.84732e-08, -1.60993e-15, -4.37114e-08, 1, -0.422618, -0.906308, -3.9616e-08, 0.553, 0.732606, 1.358)
+shape = SubResource("CapsuleShape3D_stukv")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
